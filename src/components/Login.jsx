@@ -6,18 +6,24 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/modules/auth';
 import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
+import { useState } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const onLogin = (data) => {
+    setIsLoading(true);
     dispatch(login(data)).then((res) => {
       if (res.payload) {
         // 로그인 성공
+        setIsLoading(false);
         alert('로그인 완료');
         console.log('로그인 완료');
       } else {
         // 로그인 실패
+        setIsLoading(false);
         alert('이메일 혹은 비밀번호를 확인해주세요.');
       }
     });
@@ -87,13 +93,23 @@ const Login = () => {
         ) : (
           <span className="invisible h-4">password</span>
         )}
-        <div>
+        <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-waniGreen text-white w-full h-12 rounded-lg text-2xl font-bold mt-10"
+            className="bg-waniGreen text-white w-full h-12 rounded-lg text-2xl font-bold mt-10 flex items-center justify-center"
             disabled={isSubmitting}
           >
-            Login
+            {isLoading ? (
+              <ClipLoader
+                color="#000000"
+                cssOverride={{
+                  width: '1.875rem',
+                  height: '1.875rem',
+                }}
+              />
+            ) : (
+              `Login`
+            )}
           </button>
         </div>
       </form>
@@ -113,9 +129,9 @@ const Login = () => {
       </div>
       <div className="border-t mt-6 pt-6 flex justify-around px-14">
         <span className="text-[#A6A6A6]">New member?</span>
-        <span className="text-[#18580C]" onClick={onSignUp}>
+        <button className="text-[#18580C]" onClick={onSignUp}>
           Register
-        </span>
+        </button>
       </div>
     </Layout>
   );
