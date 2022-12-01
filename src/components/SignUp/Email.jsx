@@ -36,7 +36,7 @@ const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
         {
           email,
         },
-        { withCredentials: true },
+        // { withCredentials: true },
       )
       .then((res) => {
         if (res.status === 200) {
