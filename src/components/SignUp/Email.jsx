@@ -4,7 +4,6 @@ import React from 'react';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import SignUpForm from './SignUpForm';
-import axios from 'axios';
 import WarnMessage from './WarnMessage';
 import { customAxios } from '../../customAxios';
 
