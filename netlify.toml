@@ -1,4 +1,4 @@
 [[redirects]]
-from = "/proxy/*"
+from = "/auth/*"
 to = "https://freind-matching-app.herokuapp.com/:splat"
 status = 200
