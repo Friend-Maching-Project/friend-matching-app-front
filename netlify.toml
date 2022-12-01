@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/auth/*"
+to = "https://freind-matching-app.herokuapp.com/:splat"
+status = 200
