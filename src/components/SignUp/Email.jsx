@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { useState } from 'react';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
-import { customAxios } from '../../customAxios';
+import axios from 'axios';
 
 const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
   const [email, setEmail] = useState('');
@@ -30,14 +30,10 @@ const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
   );
 
   const getValidationEmail = () => {
-    customAxios
-      .post(
-        'auth/email-double-check',
-        {
-          email,
-        },
-        // { withCredentials: true },
-      )
+    axios
+      .post('auth/email-double-check', {
+        email,
+      })
       .then((res) => {
         if (res.status === 200) {
           setSignUpInfo({ ...signUpInfo, email });
