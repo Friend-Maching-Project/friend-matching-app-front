@@ -2,6 +2,7 @@ import { faCircleLeft, faCircleRight, faUserLarge } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
 
@@ -9,6 +10,7 @@ const Nickname = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSi
   const [nickname, setNickname] = useState('');
   const [nicknameMessage, setNicknameMessage] = useState('');
   const [isNickname, setIsNickname] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChangeNickname = useCallback((e) => {
     const nicknameRegex = /^[ㄱ-ㅎ|가-힣]+$/;
@@ -28,16 +30,19 @@ const Nickname = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSi
   }, []);
 
   const getValidationNickname = () => {
+    setIsLoading(true);
     axios
       .get('/auth/nickname-double-check', { params: { nickname } })
       .then((res) => {
         if (res.status === 200) {
+          setIsLoading(false);
           setSignUpInfo({ ...signUpInfo, nickname });
           goNextPage();
         }
       })
       .catch((res) => {
         if (res.response.status === 409) {
+          setIsLoading(false);
           setNicknameMessage('이미 존재하는 닉네임입니다.');
         }
       });
@@ -54,10 +59,21 @@ const Nickname = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSi
           <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
         </button>
 
-        {isNickname === true ? (
-          <button className="mt-12 float-right" onClick={getValidationNickname}>
-            <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
-          </button>
+        {isNickname ? (
+          isLoading ? (
+            <ClipLoader
+              className="mt-12 float-right"
+              color="#18580C"
+              cssOverride={{
+                width: '1.875rem',
+                height: '1.875rem',
+              }}
+            />
+          ) : (
+            <button className="mt-12 float-right" onClick={getValidationNickname}>
+              <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+            </button>
+          )
         ) : (
           <button className="mt-12 float-right">
             <FontAwesomeIcon icon={faCircleRight} className="text-waniGray text-3xl" />

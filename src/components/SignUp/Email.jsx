@@ -6,11 +6,13 @@ import { useState } from 'react';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
 import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 
 const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
   const [email, setEmail] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
   const [isEmail, setIsEmail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const onChangeEmail = useCallback(
     (e) => {
       const emailRegex =
@@ -30,18 +32,21 @@ const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
   );
 
   const getValidationEmail = () => {
+    setIsLoading(true);
     axios
       .post('auth/email-double-check', {
         email,
       })
       .then((res) => {
         if (res.status === 200) {
+          setIsLoading(false);
           setSignUpInfo({ ...signUpInfo, email });
           goNextPage();
         }
       })
       .catch((res) => {
         if (res.response.status === 409) {
+          setIsLoading(false);
           setEmailMessage('이미 존재하는 이메일입니다.');
         }
       });
@@ -55,9 +60,20 @@ const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
       <WarnMessage message={emailMessage} />
       <div>
         {isEmail ? (
-          <button className="mt-12 float-right" onClick={getValidationEmail}>
-            <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
-          </button>
+          isLoading ? (
+            <ClipLoader
+              className="mt-12 float-right"
+              color="#18580C"
+              cssOverride={{
+                width: '1.875rem',
+                height: '1.875rem',
+              }}
+            />
+          ) : (
+            <button className="mt-12 float-right" onClick={getValidationEmail}>
+              <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+            </button>
+          )
         ) : (
           <button className="mt-12 float-right">
             <FontAwesomeIcon icon={faCircleRight} className="text-waniGray text-3xl" />

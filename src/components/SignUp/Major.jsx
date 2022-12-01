@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
 
@@ -11,6 +12,7 @@ const Major = ({ page, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signU
   const [major, setMajor] = useState('');
   const [majorMessage, setMajorMessage] = useState('');
   const [isMajor, setIsMajor] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleMajor = (e) => {
     setMajor(e.target.value);
     if (major !== '' || major !== '전공') {
@@ -26,11 +28,14 @@ const Major = ({ page, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signU
       setMajorMessage('전공을 선택해주세요.');
       setIsMajor(false);
     } else {
+      setIsLoading(true);
       const res = await signUp(signUpInfo);
       if (res === 200) {
+        setIsLoading(false);
         alert('회원가입에 성공했습니다.');
         navigate('/login');
       } else {
+        setIsLoading(false);
         alert('회원가입에 실패했습니다.');
         navigate('/signup');
       }
@@ -54,10 +59,21 @@ const Major = ({ page, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signU
         <button className="mt-12 float-left" onClick={goPreviousPage}>
           <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
         </button>
-        {isMajor === true ? (
-          <button className="mt-12 float-right" onClick={getValidationMajor}>
-            <FontAwesomeIcon icon={faCircleCheck} className="text-waniGreen text-3xl" />
-          </button>
+        {isMajor ? (
+          isLoading ? (
+            <ClipLoader
+              className="mt-12 float-right"
+              color="#18580C"
+              cssOverride={{
+                width: '1.875rem',
+                height: '1.875rem',
+              }}
+            />
+          ) : (
+            <button className="mt-12 float-right" onClick={getValidationMajor}>
+              <FontAwesomeIcon icon={faCircleCheck} className="text-waniGreen text-3xl" />
+            </button>
+          )
         ) : (
           <button className="mt-12 float-right">
             <FontAwesomeIcon icon={faCircleCheck} className="text-waniGray text-3xl" />
