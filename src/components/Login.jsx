@@ -4,23 +4,29 @@ import React from 'react';
 import Layout from './Layout';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/modules/auth';
+import { login, silentRefresh } from '../redux/modules/auth';
 import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
   const onLogin = (data) => {
     setIsLoading(true);
     dispatch(login(data)).then((res) => {
+      console.log(res);
       if (res.payload) {
         // 로그인 성공
         setIsLoading(false);
         alert('로그인 완료');
         console.log('로그인 완료');
+        // onLoginSuccess(res);
+
+        navigate('/');
       } else {
         // 로그인 실패
         setIsLoading(false);
@@ -28,6 +34,20 @@ const Login = () => {
       }
     });
   };
+
+  const onLoginSuccess = (res) => {
+    console.log(res);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+    setTimeout(onSilentRefresh, 3000);
+  };
+
+  const onSilentRefresh = () => {
+    axios.get('/auth/refresh').then((res) => {
+      console.log(res);
+      onLoginSuccess(res);
+    });
+  };
+
   const {
     register,
     handleSubmit,

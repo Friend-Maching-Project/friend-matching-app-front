@@ -16,23 +16,35 @@ export const signUp = createAsyncThunk(
       .then((res) => res.data);
   },
 );
-export const login = createAsyncThunk('POST/LOGIN', async ({ email, password }) => {
-  return axios
-    .post('/auth/login', {
-      email,
-      password,
-    })
-    .then((res) => res.data);
+export const login = createAsyncThunk('POST/LOGIN', async ({ email, password }, thunkApi) => {
+  const res = await axios.post('/auth/login', { email, password });
+  console.log(res);
+  if (res.status === 200) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+    setTimeout(() => thunkApi.dispatch(silentRefresh()), 1000 * 60 * 50);
+  }
+  return res.data;
 });
 
-export const getUser = createAsyncThunk('GET/MEMBER/ME', async (token) => {
+export const silentRefresh = createAsyncThunk('/GET/REFRESH', async (_, thunkAPI) => {
+  const res = await axios.get('/auth/refresh');
+  console.log(res);
+  if (res.status === 200) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+    setTimeout(() => thunkAPI.dispatch(silentRefresh()), 1000 * 60 * 50);
+  }
+  return res.data;
+});
+
+export const getUser = createAsyncThunk('GET/MEMBER/ME', async () => {
   return axios
     .get('/user/me', {
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
+      // headers: {
+      //   Authorization: 'Bearer ' + token,
+      // },
     })
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .then((res) => console.log(res));
 });
 
 export const changeNickname = createAsyncThunk(
@@ -108,6 +120,9 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         state.expirationTime = action.payload.tokenExpiresIn;
+      })
+      .addCase(silentRefresh.fulfilled, (state, action) => {
+        state.token = action.payload.token;
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload;
