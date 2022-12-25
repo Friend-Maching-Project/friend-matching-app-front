@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Birth from '../components/SignUp/Birth';
 import Major from '../components/SignUp/Major';
 import Nickname from '../components/SignUp/Nickname';
 import Sex from '../components/SignUp/Sex';
 
 const OAuthSignUpPage = () => {
-  const navigate = useNavigate();
   const pageCount = 4;
   const [page, setPage] = useState(0);
   const [signUpInfo, setSignUpInfo] = useState({
