@@ -8,7 +8,7 @@ import WarnMessage from './WarnMessage';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 
-const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
+const Email = ({ page, pageCount, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
   const [email, setEmail] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
   const [isEmail, setIsEmail] = useState(false);
@@ -52,7 +52,7 @@ const Email = ({ page, setPage, goNextPage, signUpInfo, setSignUpInfo }) => {
       });
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
         <FontAwesomeIcon icon={faEnvelope} className="text-waniGray text-2xl pr-3" />
         <input type="text" placeholder="Email ID" onChange={onChangeEmail} value={email} />

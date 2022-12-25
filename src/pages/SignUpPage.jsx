@@ -9,6 +9,7 @@ import Password from '../components/SignUp/Password';
 import Sex from '../components/SignUp/Sex';
 
 const SignUpPage = () => {
+  const pageCount = 6;
   const [page, setPage] = useState(0);
   const [signUpInfo, setSignUpInfo] = useState({
     email: '',
@@ -43,6 +44,7 @@ const SignUpPage = () => {
   const pages = [
     <Email
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goNextPage={goNextPage}
       signUpInfo={signUpInfo}
@@ -50,6 +52,7 @@ const SignUpPage = () => {
     />,
     <Password
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goPreviousPage={goPreviousPage}
       goNextPage={goNextPage}
@@ -58,6 +61,7 @@ const SignUpPage = () => {
     />,
     <Nickname
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goPreviousPage={goPreviousPage}
       goNextPage={goNextPage}
@@ -66,6 +70,7 @@ const SignUpPage = () => {
     />,
     <Sex
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goPreviousPage={goPreviousPage}
       goNextPage={goNextPage}
@@ -74,6 +79,7 @@ const SignUpPage = () => {
     />,
     <Birth
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goPreviousPage={goPreviousPage}
       goNextPage={goNextPage}
@@ -82,6 +88,7 @@ const SignUpPage = () => {
     />,
     <Major
       page={page}
+      pageCount={pageCount}
       setPage={setPage}
       goPreviousPage={goPreviousPage}
       goNextPage={goNextPage}

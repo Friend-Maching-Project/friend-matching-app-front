@@ -6,7 +6,15 @@ import { ClipLoader } from 'react-spinners';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
 
-const Nickname = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignUpInfo }) => {
+const Nickname = ({
+  page,
+  pageCount,
+  setPage,
+  goPreviousPage,
+  goNextPage,
+  signUpInfo,
+  setSignUpInfo,
+}) => {
   const [nickname, setNickname] = useState('');
   const [nicknameMessage, setNicknameMessage] = useState('');
   const [isNickname, setIsNickname] = useState(false);
@@ -48,7 +56,7 @@ const Nickname = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSi
       });
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
         <FontAwesomeIcon icon={faUserLarge} className="text-waniGray text-2xl pr-3" />
         <input type="text" placeholder="Nickname" onChange={onChangeNickname} value={nickname} />

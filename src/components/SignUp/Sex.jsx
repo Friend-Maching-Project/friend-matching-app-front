@@ -5,7 +5,15 @@ import React, { useState } from 'react';
 import SignUpForm from './SignUpForm';
 import { useCallback } from 'react';
 
-const Sex = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignUpInfo }) => {
+const Sex = ({
+  page,
+  pageCount,
+  setPage,
+  goPreviousPage,
+  goNextPage,
+  signUpInfo,
+  setSignUpInfo,
+}) => {
   const [sex, setSex] = useState('male');
   const onChangeSex = useCallback((e) => {
     setSex(e.target.value);
@@ -18,7 +26,7 @@ const Sex = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignUpI
     }
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="flex justify-around">
         <label>
           <input type="radio" name="sex" value="male" className="hidden" onChange={onChangeSex} />

@@ -5,7 +5,15 @@ import SignUpForm from './SignUpForm';
 import { useState } from 'react';
 import WarnMessage from './WarnMessage';
 
-const Password = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignUpInfo }) => {
+const Password = ({
+  page,
+  pageCount,
+  setPage,
+  goPreviousPage,
+  goNextPage,
+  signUpInfo,
+  setSignUpInfo,
+}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
@@ -47,7 +55,7 @@ const Password = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSi
     goNextPage();
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
         <FontAwesomeIcon icon={faLock} className="text-waniGray text-2xl pr-3" />
         <input

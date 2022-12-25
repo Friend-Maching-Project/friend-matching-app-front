@@ -7,7 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import SignUpForm from './SignUpForm';
 import WarnMessage from './WarnMessage';
 
-const Major = ({ page, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signUp }) => {
+const Major = ({ page, pageCount, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signUp }) => {
   const navigate = useNavigate();
   const [major, setMajor] = useState('');
   const [majorMessage, setMajorMessage] = useState('');
@@ -32,17 +32,26 @@ const Major = ({ page, setPage, goPreviousPage, signUpInfo, setSignUpInfo, signU
       const res = await signUp(signUpInfo);
       if (res === 200) {
         setIsLoading(false);
-        alert('회원가입에 성공했습니다.');
-        navigate('/login');
+        if (pageCount === 4) {
+          alert('회원정보 변경에 성공했습니다.');
+          navigate('/');
+        } else {
+          alert('회원가입에 성공했습니다.');
+          navigate('/login');
+        }
       } else {
         setIsLoading(false);
-        alert('회원가입에 실패했습니다.');
-        navigate('/signup');
+        if (pageCount === 4) {
+          alert('회원정보 변경에 실패했습니다.');
+        } else {
+          alert('회원가입에 실패했습니다.');
+          navigate('/signup');
+        }
       }
     }
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
         <FontAwesomeIcon icon={faGraduationCap} className="text-waniGray text-2xl pr-3" />
         <select className="w-full" onChange={handleMajor} value={major}>
