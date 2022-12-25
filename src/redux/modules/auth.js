@@ -28,7 +28,6 @@ export const login = createAsyncThunk('POST/LOGIN', async ({ email, password }, 
 
 export const silentRefresh = createAsyncThunk('/GET/REFRESH', async (_, thunkAPI) => {
   const res = await axios.get('/auth/refresh');
-  console.log(res);
   if (res.status === 200) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
     setTimeout(() => thunkAPI.dispatch(silentRefresh()), 1000 * 60 * 50);
@@ -37,14 +36,8 @@ export const silentRefresh = createAsyncThunk('/GET/REFRESH', async (_, thunkAPI
 });
 
 export const getUser = createAsyncThunk('GET/MEMBER/ME', async () => {
-  return axios
-    .get('/user/me', {
-      // headers: {
-      //   Authorization: 'Bearer ' + token,
-      // },
-    })
-    .then((res) => res.data)
-    .then((res) => console.log(res));
+  const res = await axios.get('/user/me');
+  return res.data;
 });
 
 export const changeNickname = createAsyncThunk(
@@ -109,10 +102,15 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: '',
+    user: '',
   },
   reducers: {
     removeToken: (state) => {
       state.token = '';
+    },
+    oAuthLogin: (state, action) => {
+      state.token = action.payload;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload}`;
     },
   },
   extraReducers: (builder) => {
@@ -132,5 +130,5 @@ const authSlice = createSlice({
       });
   },
 });
-
+export const { oAuthLogin } = authSlice.actions;
 export default authSlice;
