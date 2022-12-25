@@ -1,19 +1,14 @@
 import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Birth from '../components/SignUp/Birth';
-import Email from '../components/SignUp/Email';
 import Major from '../components/SignUp/Major';
 import Nickname from '../components/SignUp/Nickname';
-import Password from '../components/SignUp/Password';
 import Sex from '../components/SignUp/Sex';
 
-const SignUpPage = () => {
-  const pageCount = 6;
+const OAuthSignUpPage = () => {
+  const pageCount = 4;
   const [page, setPage] = useState(0);
   const [signUpInfo, setSignUpInfo] = useState({
-    email: '',
-    password: '',
     nickname: '',
     sex: 'male',
     birth: '',
@@ -26,11 +21,9 @@ const SignUpPage = () => {
   const goPreviousPage = () => {
     setPage(page - 1);
   };
-  const signUp = async ({ email, password, nickname, sex, birth, major }) => {
+  const signUp = async ({ nickname, sex, birth, major }) => {
     try {
-      const response = await axios.post('/auth/signup', {
-        email,
-        password,
+      const response = await axios.post('/user/change-oauth-user-info', {
         nickname,
         sex,
         birth,
@@ -42,23 +35,6 @@ const SignUpPage = () => {
     }
   };
   const pages = [
-    <Email
-      page={page}
-      pageCount={pageCount}
-      setPage={setPage}
-      goNextPage={goNextPage}
-      signUpInfo={signUpInfo}
-      setSignUpInfo={setSignUpInfo}
-    />,
-    <Password
-      page={page}
-      pageCount={pageCount}
-      setPage={setPage}
-      goPreviousPage={goPreviousPage}
-      goNextPage={goNextPage}
-      signUpInfo={signUpInfo}
-      setSignUpInfo={setSignUpInfo}
-    />,
     <Nickname
       page={page}
       pageCount={pageCount}
@@ -100,4 +76,4 @@ const SignUpPage = () => {
   return <>{pages[page]}</>;
 };
 
-export default SignUpPage;
+export default OAuthSignUpPage;

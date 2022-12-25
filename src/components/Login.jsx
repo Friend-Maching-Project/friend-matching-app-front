@@ -4,7 +4,7 @@ import React from 'react';
 import Layout from './Layout';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { login, silentRefresh } from '../redux/modules/auth';
+import { login } from '../redux/modules/auth';
 import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import { useState } from 'react';
@@ -53,9 +53,11 @@ const Login = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm();
+
   const onSignUp = () => {
     navigate('/signup');
   };
+
   return (
     <Layout height="h-100">
       <div className="flex justify-center pt-16">
@@ -138,13 +140,19 @@ const Login = () => {
       </div>
       <div className="flex justify-between mx-10 mt-6">
         <div className="bg-[#F2F2F2] rounded-full w-10 h-10">
-          <div className="bg-google-logo bg-contain bg-no-repeat w-10 h-10"></div>
+          <a href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth/redirect">
+            <div className="bg-google-logo bg-contain bg-no-repeat w-10 h-10"></div>
+          </a>
         </div>
         <div className=" bg-[#5FC53A] rounded-full w-10 h-10">
-          <div className="bg-naver-logo bg-cover bg-no-repeat h-10 w-10 rounded-full"></div>
+          <a href="http://localhost:8080/oauth2/authorize/naver?redirect_uri=http://localhost:3000/oauth/redirect">
+            <div className="bg-naver-logo bg-cover bg-no-repeat h-10 w-10 rounded-full"></div>
+          </a>
         </div>
         <div className="bg-[#F6E24B] w-10 h-10 rounded-full">
-          <div className="bg-kakao-logo bg-contain bg-no-repeat h-10 w-10 rounded-full"></div>
+          <a href="http://localhost:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:3000/oauth/redirect">
+            <div className="bg-kakao-logo bg-contain bg-no-repeat h-10 w-10 rounded-full"></div>
+          </a>
         </div>
       </div>
       <div className="border-t mt-6 pt-6 flex justify-around px-14">

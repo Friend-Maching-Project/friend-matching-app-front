@@ -7,7 +7,15 @@ import { useRef } from 'react';
 import moment from 'moment/moment';
 import WarnMessage from './WarnMessage';
 
-const Birth = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignUpInfo }) => {
+const Birth = ({
+  page,
+  pageCount,
+  setPage,
+  goPreviousPage,
+  goNextPage,
+  signUpInfo,
+  setSignUpInfo,
+}) => {
   const [birth, setBirth] = useState('');
   const [birthMessage, setBirthMessage] = useState('');
   const [isBirth, setIsBirth] = useState(false);
@@ -80,7 +88,7 @@ const Birth = ({ page, setPage, goPreviousPage, goNextPage, signUpInfo, setSignU
     }
   };
   return (
-    <SignUpForm page={page} setPage={setPage}>
+    <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
         <FontAwesomeIcon icon={faUserLarge} className="text-waniGray text-2xl pr-3" />
         <input

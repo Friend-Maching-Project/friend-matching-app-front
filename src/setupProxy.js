@@ -15,4 +15,11 @@ module.exports = (app) => {
       changeOrigin: true,
     }),
   );
+  app.use(
+    '/oauth2',
+    createProxyMiddleware({
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+    }),
+  );
 };
