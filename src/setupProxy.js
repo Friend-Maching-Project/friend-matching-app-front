@@ -22,4 +22,11 @@ module.exports = (app) => {
       changeOrigin: true,
     }),
   );
+  app.use(
+    '/article',
+    createProxyMiddleware({
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+    }),
+  );
 };
