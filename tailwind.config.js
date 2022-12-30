@@ -10,6 +10,11 @@ module.exports = {
       },
       height: {
         100: 'calc(var(--vh, 1vh) * 100)',
+        'contain-header': 'calc(100vh - 3.5rem - 1rem)',
+      },
+      spacing: {
+        'article-filter': 'calc(4rem + 2px)',
+        'articles-container': 'calc(4rem + 2px + 3rem)',
       },
     },
     colors: {
