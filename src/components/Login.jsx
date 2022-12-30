@@ -59,7 +59,7 @@ const Login = () => {
   };
 
   return (
-    <Layout height="h-100">
+    <Layout height="h-100" px="px-10">
       <div className="flex justify-center pt-16">
         <img src="/logo.png" alt="logo" className="w-36" />
       </div>
