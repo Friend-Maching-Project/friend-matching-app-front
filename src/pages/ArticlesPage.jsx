@@ -3,7 +3,7 @@ import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import Article from '../components/Article';
+import Article from '../components/Articles/Article';
 import ArticlesFilter from '../components/Articles/ArticlesFilter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -14,9 +14,13 @@ import {
 } from '../redux/modules/articles';
 import { ClipLoader } from 'react-spinners';
 import { DESC, SIZE } from '../constants';
+import ArticleWriteButton from '../components/Articles/ArticleWriteButton';
+import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 
 const ArticlePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [sort, setSort] = useState(DESC);
   const [places, setPlaces] = useState([]);
   const [sex, setSex] = useState([]);
@@ -132,9 +136,9 @@ const ArticlePage = () => {
     <>
       <Layout px="px-4 bg-[#f0f0f0]">
         <div className="fixed top-0 left-0 right-0 w-full flex justify-between border-b-2 border-black items-center py-2 px-4 bg-[#ffffff]">
-          <FontAwesomeIcon icon={faBars} className="text-4xl text-waniGreen" />
+          <FontAwesomeIcon icon={faBars} className="text-4xl text-green-dark" />
           <img src="./logo.png" alt="logo" className="h-12" />
-          <FontAwesomeIcon icon={faBell} className="text-4xl text-waniGreen" />
+          <FontAwesomeIcon icon={faBell} className="text-4xl text-green-dark" />
         </div>
         <ArticlesFilter
           places={places}
@@ -162,6 +166,7 @@ const ArticlePage = () => {
             ))}
           <div className="flex justify-center pt-1">{isLoading && <ClipLoader />}</div>
         </div>
+        <ArticleWriteButton />
       </Layout>
     </>
   );

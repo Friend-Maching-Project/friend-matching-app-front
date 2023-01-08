@@ -71,7 +71,7 @@ const Email = ({ page, pageCount, setPage, goNextPage, signUpInfo, setSignUpInfo
             />
           ) : (
             <button className="mt-12 float-right" onClick={getValidationEmail}>
-              <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+              <FontAwesomeIcon icon={faCircleRight} className="text-green-dark text-3xl" />
             </button>
           )
         ) : (

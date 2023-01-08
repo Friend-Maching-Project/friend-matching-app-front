@@ -66,7 +66,7 @@ const Major = ({ page, pageCount, setPage, goPreviousPage, signUpInfo, setSignUp
       <WarnMessage message={majorMessage} />
       <div>
         <button className="mt-12 float-left" onClick={goPreviousPage}>
-          <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
+          <FontAwesomeIcon icon={faCircleLeft} className="text-green-dark text-3xl" />
         </button>
         {isMajor ? (
           isLoading ? (
@@ -80,7 +80,7 @@ const Major = ({ page, pageCount, setPage, goPreviousPage, signUpInfo, setSignUp
             />
           ) : (
             <button className="mt-12 float-right" onClick={getValidationMajor}>
-              <FontAwesomeIcon icon={faCircleCheck} className="text-waniGreen text-3xl" />
+              <FontAwesomeIcon icon={faCircleCheck} className="text-green-dark text-3xl" />
             </button>
           )
         ) : (

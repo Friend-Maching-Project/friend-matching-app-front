@@ -102,11 +102,11 @@ const Birth = ({
       <WarnMessage message={birthMessage} />
       <div>
         <button className="mt-12 float-left" onClick={goPreviousPage}>
-          <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
+          <FontAwesomeIcon icon={faCircleLeft} className="text-green-dark text-3xl" />
         </button>
         {isBirth === true ? (
           <button className="mt-12 float-right" onClick={getBirthValidation}>
-            <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+            <FontAwesomeIcon icon={faCircleRight} className="text-green-dark text-3xl" />
           </button>
         ) : (
           <button className="mt-12 float-right">

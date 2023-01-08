@@ -6,7 +6,7 @@ const WarnMessage = ({ message }) => {
       {message === '' ? (
         <div className="invisible">O</div>
       ) : (
-        <div className="text-waniRed">{message}</div>
+        <div className="text-red">{message}</div>
       )}
     </div>
   );

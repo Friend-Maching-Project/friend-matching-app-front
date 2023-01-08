@@ -64,7 +64,7 @@ const Nickname = ({
       <WarnMessage message={nicknameMessage} />
       <div>
         <button className="mt-12 float-left" onClick={goPreviousPage}>
-          <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
+          <FontAwesomeIcon icon={faCircleLeft} className="text-green-dark text-3xl" />
         </button>
 
         {isNickname ? (
@@ -79,7 +79,7 @@ const Nickname = ({
             />
           ) : (
             <button className="mt-12 float-right" onClick={getValidationNickname}>
-              <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+              <FontAwesomeIcon icon={faCircleRight} className="text-green-dark text-3xl" />
             </button>
           )
         ) : (

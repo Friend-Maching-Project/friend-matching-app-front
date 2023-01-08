@@ -107,7 +107,7 @@ const Login = () => {
                 // },
               })}
             />
-            <span className="text-waniGreen ">Forgot?</span>
+            <span className="text-green-dark ">Forgot?</span>
           </div>
         </div>
         {errors.password ? (
@@ -118,7 +118,7 @@ const Login = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-waniGreen text-white w-full h-12 rounded-lg text-2xl font-bold mt-10 flex items-center justify-center"
+            className="bg-green-dark text-white w-full h-12 rounded-lg text-2xl font-bold mt-10 flex items-center justify-center"
             disabled={isSubmitting}
           >
             {isLoading ? (

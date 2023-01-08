@@ -31,13 +31,13 @@ const Sex = ({
         <label>
           <input type="radio" name="sex" value="male" className="hidden" onChange={onChangeSex} />
           {sex === 'male' ? (
-            <FontAwesomeIcon icon={faCircleDot} className="text-waniGreen" />
+            <FontAwesomeIcon icon={faCircleDot} className="text-green-dark" />
           ) : (
             <FontAwesomeIcon icon={faRegularCircleDot} className="text-waniGray" />
           )}
           <span
             className={`pl-4 font-bold text-xl ${
-              sex === 'male' ? 'text-waniGreen' : 'text-waniGray'
+              sex === 'male' ? 'text-green-dark' : 'text-waniGray'
             }`}
           >
             Male
@@ -46,13 +46,13 @@ const Sex = ({
         <label>
           <input type="radio" name="sex" value="female" className="hidden" onChange={onChangeSex} />
           {sex === 'female' ? (
-            <FontAwesomeIcon icon={faCircleDot} className="text-waniGreen" />
+            <FontAwesomeIcon icon={faCircleDot} className="text-green-dark" />
           ) : (
             <FontAwesomeIcon icon={faRegularCircleDot} className="text-waniGray" />
           )}
           <span
             className={`pl-4 font-bold text-xl ${
-              sex === 'female' ? 'text-waniGreen' : 'text-waniGray'
+              sex === 'female' ? 'text-green-dark' : 'text-waniGray'
             }`}
           >
             Female
@@ -61,10 +61,10 @@ const Sex = ({
       </div>
       <div>
         <button className="mt-12 float-left" onClick={goPreviousPage}>
-          <FontAwesomeIcon icon={faCircleLeft} className="text-waniGreen text-3xl" />
+          <FontAwesomeIcon icon={faCircleLeft} className="text-green-dark text-3xl" />
         </button>
         <button className="mt-12 float-right" onClick={getValidationSex}>
-          <FontAwesomeIcon icon={faCircleRight} className="text-waniGreen text-3xl" />
+          <FontAwesomeIcon icon={faCircleRight} className="text-green-dark text-3xl" />
         </button>
       </div>
     </SignUpForm>

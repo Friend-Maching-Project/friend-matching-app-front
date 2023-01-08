@@ -1,3 +1,9 @@
 export const SIZE = 10;
 export const DESC = 'createdAt,desc';
 export const ASC = 'createdAt,asc';
+export const BAEKNOKGWAN = '백록관';
+export const CHEONJIGWAN = '천지관';
+export const DURIGWAN = '두리관';
+export const SEOGJAE = '석재';
+export const PLACES = [BAEKNOKGWAN, CHEONJIGWAN, DURIGWAN, SEOGJAE];
+export const DATES = ['오늘', '1일 후', '2일 후'];
