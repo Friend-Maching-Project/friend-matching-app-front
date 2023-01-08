@@ -35,7 +35,7 @@ const Article = ({ nickname, place, comment, createdAt, meetAt, articleComment }
           <div className="text-sm px-1">|</div>
           <div className="text-sm">{meetAt}</div>
         </div>
-        <div className="flex items-center text-waniGreen">
+        <div className="flex items-center text-green-dark">
           <FontAwesomeIcon icon={faComment} className="text-sm mr-1" />
           <div className="text-sm">{articleComment ? articleComment.length : 0}</div>
         </div>

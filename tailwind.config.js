@@ -18,13 +18,15 @@ module.exports = {
       },
     },
     colors: {
-      waniGreen: {
-        DEFAULT: '#18580C',
+      green: {
+        dark: '#18580C',
+        DEFAULT: '#3f6e3b',
+        light: '#badba5',
       },
       waniGray: {
         DEFAULT: '#A6A6A6',
       },
-      waniRed: {
+      red: {
         DEFAULT: '#FF5E5E',
       },
     },
