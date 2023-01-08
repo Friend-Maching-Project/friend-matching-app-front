@@ -8,9 +8,9 @@ import LoginPage from './pages/LoginPage';
 import OAuthSignUpPage from './pages/OAuthSignUpPage';
 import RedirectPage from './pages/RedirectPage';
 import SignUpPage from './pages/SignUpPage';
-import TestPage from './pages/TestPage';
 import { silentRefresh } from './redux/modules/auth';
 import Modal from 'react-modal';
+import ArticleWritePage from './pages/ArticleWritePage';
 function App() {
   Modal.setAppElement('#root');
   const dispatch = useDispatch();
@@ -39,6 +39,7 @@ function App() {
           <Route path="/change-oauth-user-info" element={<OAuthSignUpPage />} />
           <Route path="/oauth/redirect" element={<RedirectPage />} />
           <Route path="/" element={<ArticlesPage />} />
+          <Route path="/article-write" element={<ArticleWritePage />} />
         </Routes>
       </BrowserRouter>
     </div>
