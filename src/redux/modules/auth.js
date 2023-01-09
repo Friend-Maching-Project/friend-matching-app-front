@@ -22,15 +22,17 @@ export const login = createAsyncThunk('POST/LOGIN', async ({ email, password }, 
   if (res.status === 200) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
     setTimeout(() => thunkApi.dispatch(silentRefresh()), 1000 * 60 * 50);
+    thunkApi.dispatch(getUser());
   }
   return res.data;
 });
 
-export const silentRefresh = createAsyncThunk('/GET/REFRESH', async (_, thunkAPI) => {
+export const silentRefresh = createAsyncThunk('/GET/REFRESH', async (_, thunkApi) => {
   const res = await axios.get('/auth/refresh');
   if (res.status === 200) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-    setTimeout(() => thunkAPI.dispatch(silentRefresh()), 1000 * 60 * 50);
+    setTimeout(() => thunkApi.dispatch(silentRefresh()), 1000 * 60 * 50);
+    thunkApi.dispatch(getUser());
   }
   return res.data;
 });
