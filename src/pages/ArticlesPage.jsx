@@ -15,7 +15,6 @@ import {
 import { ClipLoader } from 'react-spinners';
 import { DESC, SIZE } from '../constants';
 import ArticleWriteButton from '../components/Articles/ArticleWriteButton';
-import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 
 const ArticlePage = () => {
@@ -26,6 +25,10 @@ const ArticlePage = () => {
   const [sex, setSex] = useState([]);
   const [filterModalIsOpen, setFilterModalIsOpen] = useState(false);
   const { articles, isLoading, hasMoreArticles } = useSelector((state) => state.articles);
+
+  const onArticle = (articleId) => {
+    navigate(`/articles/${articleId}`);
+  };
 
   const onReset = () => {
     setPlaces([]);
@@ -155,6 +158,7 @@ const ArticlePage = () => {
           {articles &&
             articles.map((article) => (
               <Article
+                articleId={article.articleId}
                 place={article.place}
                 comment={article.comment}
                 createdAt={article.createdAt}
@@ -162,6 +166,7 @@ const ArticlePage = () => {
                 nickname={article.user.nickname}
                 articleComment={article.articleComment}
                 key={article.articleId}
+                onArticle={onArticle}
               />
             ))}
           <div className="flex justify-center pt-1">{isLoading && <ClipLoader />}</div>
