@@ -66,7 +66,7 @@ const Login = () => {
       <form onSubmit={handleSubmit(onLogin)}>
         <div className="border-b mt-16">
           <span>
-            <FontAwesomeIcon icon={faEnvelope} className="text-waniGray text-2xl pr-3" />
+            <FontAwesomeIcon icon={faEnvelope} className="text-gray text-2xl pr-3" />
           </span>
           <input
             type="text"
@@ -90,7 +90,7 @@ const Login = () => {
         )}
         <div className="border-b mt-10 flex items-center">
           <span>
-            <FontAwesomeIcon icon={faLock} className="text-waniGray text-2xl pr-3" />
+            <FontAwesomeIcon icon={faLock} className="text-gray text-2xl pr-3" />
           </span>
           <div className="flex">
             <input
@@ -136,7 +136,7 @@ const Login = () => {
         </div>
       </form>
       <div className="text-center mt-6">
-        <p className="text-waniGray">OR</p>
+        <p className="text-gray">OR</p>
       </div>
       <div className="flex justify-between mx-10 mt-6">
         <div className="bg-[#F2F2F2] rounded-full w-10 h-10">
