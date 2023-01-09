@@ -53,7 +53,7 @@ const Major = ({ page, pageCount, setPage, goPreviousPage, signUpInfo, setSignUp
   return (
     <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
-        <FontAwesomeIcon icon={faGraduationCap} className="text-waniGray text-2xl pr-3" />
+        <FontAwesomeIcon icon={faGraduationCap} className="text-gray text-2xl pr-3" />
         <select className="w-full" onChange={handleMajor} value={major}>
           {/* TODO 전공 추가하기 */}
           <option>전공</option>
@@ -85,7 +85,7 @@ const Major = ({ page, pageCount, setPage, goPreviousPage, signUpInfo, setSignUp
           )
         ) : (
           <button className="mt-12 float-right">
-            <FontAwesomeIcon icon={faCircleCheck} className="text-waniGray text-3xl" />
+            <FontAwesomeIcon icon={faCircleCheck} className="text-gray text-3xl" />
           </button>
         )}
       </div>
