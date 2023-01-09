@@ -11,6 +11,7 @@ import SignUpPage from './pages/SignUpPage';
 import { silentRefresh } from './redux/modules/auth';
 import Modal from 'react-modal';
 import ArticleWritePage from './pages/ArticleWritePage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
 function App() {
   Modal.setAppElement('#root');
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
   }, []);
 
   const token = useSelector((s) => s.auth.token);
+
   console.log(token);
   return (
     <div className="sm:absolute sm:top-1/2 sm:left-1/2 sm:translate-x-[-50%] sm:translate-y-[-50%]">
@@ -40,6 +42,7 @@ function App() {
           <Route path="/oauth/redirect" element={<RedirectPage />} />
           <Route path="/" element={<ArticlesPage />} />
           <Route path="/article-write" element={<ArticleWritePage />} />
+          <Route path="/articles/:id" element={<ArticleDetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>
