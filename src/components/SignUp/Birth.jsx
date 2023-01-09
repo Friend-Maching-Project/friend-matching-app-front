@@ -90,7 +90,7 @@ const Birth = ({
   return (
     <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
-        <FontAwesomeIcon icon={faUserLarge} className="text-waniGray text-2xl pr-3" />
+        <FontAwesomeIcon icon={faUserLarge} className="text-gray text-2xl pr-3" />
         <input
           type="num"
           placeholder="YYYY/MM/DD"
@@ -110,7 +110,7 @@ const Birth = ({
           </button>
         ) : (
           <button className="mt-12 float-right">
-            <FontAwesomeIcon icon={faCircleRight} className="text-waniGray text-3xl" />
+            <FontAwesomeIcon icon={faCircleRight} className="text-gray text-3xl" />
           </button>
         )}
       </div>

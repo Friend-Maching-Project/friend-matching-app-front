@@ -3,12 +3,21 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import React from 'react';
 import moment from 'moment/moment';
 
-const Article = ({ nickname, place, comment, createdAt, meetAt, articleComment }) => {
+const Article = ({
+  articleId,
+  nickname,
+  place,
+  comment,
+  createdAt,
+  meetAt,
+  articleComment,
+  onArticle,
+}) => {
   const today = moment();
   createdAt = moment(createdAt, 'YYYY-MM-DD HH:mm:ss');
   meetAt = moment(meetAt, 'YYYY-MM-DD HH:mm').format('MM-DD HH:mm');
-
   const diff = today.diff(createdAt, 'seconds');
+
   const minutes = () => {
     if (diff < 60) {
       return diff + '초전';
@@ -22,7 +31,7 @@ const Article = ({ nickname, place, comment, createdAt, meetAt, articleComment }
   };
 
   return (
-    <div className=" bg-[#ffffff] mt-3 px-2 py-1 rounded-lg">
+    <div className=" bg-[#ffffff] mt-3 px-2 py-1 rounded-lg" onClick={() => onArticle(articleId)}>
       <div className="flex justify-between">
         <div className="text-lg font-bold">{nickname}</div>
         <div className="text-sm text-[#a6a6a6]">{minutes()}</div>

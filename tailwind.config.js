@@ -23,11 +23,18 @@ module.exports = {
         DEFAULT: '#3f6e3b',
         light: '#badba5',
       },
-      waniGray: {
+      gray: {
         DEFAULT: '#A6A6A6',
+        light: '#F0F0F0',
       },
       red: {
         DEFAULT: '#FF5E5E',
+      },
+      white: {
+        DEFAULT: '#FFFFFF',
+      },
+      black: {
+        DEFAULT: '#000000',
       },
     },
   },

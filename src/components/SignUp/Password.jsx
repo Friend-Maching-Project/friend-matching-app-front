@@ -57,7 +57,7 @@ const Password = ({
   return (
     <SignUpForm page={page} pageCount={pageCount} setPage={setPage}>
       <div className="border-b border-[#D9D9D9] flex pb-1">
-        <FontAwesomeIcon icon={faLock} className="text-waniGray text-2xl pr-3" />
+        <FontAwesomeIcon icon={faLock} className="text-gray text-2xl pr-3" />
         <input
           type="password"
           placeholder="Password"
@@ -67,7 +67,7 @@ const Password = ({
       </div>
       <WarnMessage message={passwordMessage} />
       <div className="border-b border-[#D9D9D9] flex pb-1 mt-12">
-        <FontAwesomeIcon icon={faLock} className="text-waniGray text-2xl pr-3" />
+        <FontAwesomeIcon icon={faLock} className="text-gray text-2xl pr-3" />
         <input
           type="password"
           placeholder="Confirm Password"
@@ -87,7 +87,7 @@ const Password = ({
           </button>
         ) : (
           <button className="mt-12 float-right">
-            <FontAwesomeIcon icon={faCircleRight} className="text-waniGray text-3xl" />
+            <FontAwesomeIcon icon={faCircleRight} className="text-gray text-3xl" />
           </button>
         )}
       </div>

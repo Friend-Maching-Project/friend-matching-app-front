@@ -29,4 +29,11 @@ module.exports = (app) => {
       changeOrigin: true,
     }),
   );
+  app.use(
+    '/comments',
+    createProxyMiddleware({
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+    }),
+  );
 };

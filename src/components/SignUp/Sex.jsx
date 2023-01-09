@@ -33,12 +33,10 @@ const Sex = ({
           {sex === 'male' ? (
             <FontAwesomeIcon icon={faCircleDot} className="text-green-dark" />
           ) : (
-            <FontAwesomeIcon icon={faRegularCircleDot} className="text-waniGray" />
+            <FontAwesomeIcon icon={faRegularCircleDot} className="text-gray" />
           )}
           <span
-            className={`pl-4 font-bold text-xl ${
-              sex === 'male' ? 'text-green-dark' : 'text-waniGray'
-            }`}
+            className={`pl-4 font-bold text-xl ${sex === 'male' ? 'text-green-dark' : 'text-gray'}`}
           >
             Male
           </span>
@@ -48,11 +46,11 @@ const Sex = ({
           {sex === 'female' ? (
             <FontAwesomeIcon icon={faCircleDot} className="text-green-dark" />
           ) : (
-            <FontAwesomeIcon icon={faRegularCircleDot} className="text-waniGray" />
+            <FontAwesomeIcon icon={faRegularCircleDot} className="text-gray" />
           )}
           <span
             className={`pl-4 font-bold text-xl ${
-              sex === 'female' ? 'text-green-dark' : 'text-waniGray'
+              sex === 'female' ? 'text-green-dark' : 'text-gray'
             }`}
           >
             Female
