@@ -5,7 +5,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { DATES, PLACES } from '../constants';
+import { ARTICLE_WRITE_ERROR, DATES, LOGIN_ERROR, PLACES } from '../constants';
 import moment from 'moment/moment';
 
 const ArticleWritePage = () => {
@@ -22,7 +22,7 @@ const ArticleWritePage = () => {
   const onHour = (e) => {
     if (e.target.value > 12) {
       setHour(12);
-    } else if (e.target.value < 1) {
+    } else if (e.target.value < 0) {
       setHour(12);
     } else {
       setHour(e.target.value);
@@ -55,7 +55,11 @@ const ArticleWritePage = () => {
       setdateMessage('일시를 입력해주세요.');
     }
     if (place !== '' && place !== undefined && date !== '' && date !== undefined) {
-      const meetAt = `${moment().format('YYYY-MM-DD')} ${hour}:${minute}`;
+      const day = date === '오늘' ? 0 : date === '1일 후' ? 1 : 2;
+      const meetAt = moment(`${moment().format('YYYY-MM-DD')} ${hour}:${minute}`)
+        .add(day, 'd')
+        .format();
+      console.log(meetAt);
       axios
         .post('/article', {
           place,
@@ -64,10 +68,10 @@ const ArticleWritePage = () => {
         })
         .catch((err) => {
           if (err.response.status === 401) {
-            alert('로그인 후 이용해주세요.');
+            alert(LOGIN_ERROR);
             navigate('/login');
           } else {
-            alert('게시글 작성에 실패핬습니다.');
+            alert(ARTICLE_WRITE_ERROR);
             navigate('/');
           }
         })
