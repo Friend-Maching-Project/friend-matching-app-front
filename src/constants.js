@@ -11,4 +11,5 @@ export const LOGIN_ERROR = '로그인 후 이용해주세요.';
 export const COMMENT_ERROR = '댓글 입력에 실패했습니다.';
 export const COMMENT_DELETE_ERROR = '댓글 삭제에 실패했습니다.';
 export const ARTICLE_LOAD_ERROR = '게시글 정보를 불러오는데 실패했습니다.';
-export const ARTICLE_WRITE_ERROR = '게시글 작성에 실패핬습니다.';
+export const ARTICLE_WRITE_ERROR = '게시글 작성에 실패했습니다.';
+export const ARTICLE_UPDATE_ERROR = '게시글 수정에 실패했습니다.';

@@ -11,8 +11,10 @@ import Loading from '../components/Loading';
 import moment from 'moment/moment';
 import ArticleComment from '../components/Articles/ArticleComment';
 import { ARTICLE_LOAD_ERROR, COMMENT_ERROR, LOGIN_ERROR } from '../constants';
+import { useSelector } from 'react-redux';
 
 const ArticleDetailPage = () => {
+  const loginUserId = useSelector((s) => s.auth.user.id);
   const navigate = useNavigate();
   const { id } = useParams();
   const [articleDetail, setArticleDetail] = useState();
@@ -20,6 +22,10 @@ const ArticleDetailPage = () => {
 
   const changeDate = (date) => {
     return moment(date).format('MM-DD HH:mm');
+  };
+
+  const onUpdate = () => {
+    navigate(`/article-write/${id}`);
   };
 
   const onCommentSubmit = () => {
@@ -79,9 +85,18 @@ const ArticleDetailPage = () => {
               alt="logo"
               className="absolute left-1/2 translate-x-[-50%] text-xl font-bold h-full py-1"
             />
-            <button className="bg-green-dark text-[#fff] px-3 py-1 rounded-2xl flex items-center">
-              채팅
-            </button>
+            {loginUserId === articleDetail.user.id ? (
+              <button
+                className="bg-green-dark text-[#fff] px-3 py-1 rounded-2xl flex items-center"
+                onClick={onUpdate}
+              >
+                수정
+              </button>
+            ) : (
+              <button className="bg-green-dark text-[#fff] px-3 py-1 rounded-2xl flex items-center">
+                채팅
+              </button>
+            )}
           </div>
           {/* Header e */}
 

@@ -41,7 +41,9 @@ function App() {
           <Route path="/change-oauth-user-info" element={<OAuthSignUpPage />} />
           <Route path="/oauth/redirect" element={<RedirectPage />} />
           <Route path="/" element={<ArticlesPage />} />
-          <Route path="/article-write" element={<ArticleWritePage />} />
+          <Route path="/article-write/*" element={<ArticleWritePage />}>
+            <Route path=":id" element={<ArticleWritePage />} />
+          </Route>
           <Route path="/articles/:id" element={<ArticleDetailPage />} />
         </Routes>
       </BrowserRouter>
